@@ -32,12 +32,16 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
 ?>
 <body>
+    <div class="container mt-3">
     <h2>Pokémon Encyclopedia</h2>
     <a href="https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_National_Pok%C3%A9dex_number" target="_blank">Lista de Pokémon</a>
-    <form action="" method="POST" class="container">
+    <form action="" method="POST" class="container mt-2">
         <div class="form-group">
             <label class="form-label" for="name">Nombre del pokemon:</label>
-            <input class="form-control" type="pokemon_name" name="name" id="name" value="<?= $_POST["name"]?>"/>
+            <input class="form-control <?= isset($pokemon_list) ? '':'is-invalid'; ?>" type="pokemon_name" name="name" id="name" value="<?= $_POST["name"]?>"/>
+            <div class="invalid-feedback">
+                Pokemon no encontrado
+            </div>
         </div>
         <div class="form-group">
             <label class="form-label" for="tipos">Tipo de pokemon:</label>
@@ -50,10 +54,11 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         <div class="form-group">
             <img src="<?= $pokemon_image?>"/>
         </div>
-        <div class="form-group">
-            <input class="form-control" type="submit" value="Enviar"/>
+        <div class="form-group mt-3" >
+            <input class="form-control btn-outline-success" type="submit" value="Enviar"/>
         </div>
     </form>
+</div>
 </body>
 <hr>
 <footer class="page-footer font-small footer mt-5">
