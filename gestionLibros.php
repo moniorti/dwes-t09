@@ -80,7 +80,7 @@ class gestionLibros{
      * @return array|null libros que cumplen la condición
      */
     function consultarLibrosbyAutor($mysqli, $text){
-        $sql="SELECT titulo, nombre, apellidos FROM Libro LEFT JOIN Autor ON Libro.id_autor=Autor.id WHERE nombre LIKE '%$text%' OR apellidos LIKE '%$text%'";
+        $sql="SELECT titulo, nombre, apellidos FROM Libro LEFT JOIN Autor ON Libro.id_autor=Autor.id WHERE CONCAT(nombre,' ', apellidos) LIKE '%$text%'";
         $result_set=$mysqli->query($sql);
         if ($result_set->num_rows>0 && !$mysqli->error){
             $result=$result_set->fetch_all(MYSQLI_ASSOC);
